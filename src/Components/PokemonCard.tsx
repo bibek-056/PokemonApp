@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 
 const PokemonCard = ({ pokemonUrl }) => {
+
   console.log(pokemonUrl);
   const { data: onePokemonData, isLoading } = useQuery(
     ["onePokemon", pokemonUrl],
@@ -23,13 +24,13 @@ const PokemonCard = ({ pokemonUrl }) => {
         {onePokemonData.forms[0].name.toUpperCase()}
       </p>
       <img
-        className="h-40 border rounded-3xl shadow-2xl"
+        className={`h-40 border rounded-3xl shadow-2xl bg-[${onePokemonData.types[0]}]`}
         src={onePokemonData.sprites.other["official-artwork"].front_default}
         alt="pokemon"
       />
       <p className="font-medium text-xl border-b pb-2">Types:</p>
       <div className="w-full flex justify-between">
-        {onePokemonData.types.map((oneType) => (
+        {onePokemonData.types.map((oneType: any) => (
           <p className="w-full text-center font-semibold leading-8 text-2xl ">{oneType.type.name.toUpperCase()}</p>
         ))}
       </div>
