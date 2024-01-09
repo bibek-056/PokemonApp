@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
+import { PokemonCardProps } from "../datamodels/models";
 
-const PokemonCard = ({ pokemonUrl }) => {
+const PokemonCard: React.FC<PokemonCardProps> = ({ pokemonUrl }) => {
 
   console.log(pokemonUrl);
   const { data: onePokemonData, isLoading } = useQuery(

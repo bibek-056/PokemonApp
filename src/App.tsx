@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import PokemonCard from "./Components/PokemonCard";
 import { useState } from "react";
 import { QueryClient } from "react-query";
+import { Result } from "./datamodels/models";
 
 function App() {
   const queryClient = new QueryClient();
@@ -40,7 +41,7 @@ function App() {
     setSearchInput(event.target.value);
   };
 
-  const filteredPokemon = pokemonData?.results.filter((item: any) => {
+  const filteredPokemon = pokemonData?.results.filter((item: Result) => {
     const searchString = searchInput.toLowerCase();
     return item.name.includes(searchString);
   });
@@ -49,7 +50,7 @@ function App() {
 
   return (
     <>
-      <div className="w-screen h-screen flex flex-col justify-start ">
+      <div className="w-screen h-screen flex flex-col justify-start bg-[#242424]">
         {pokemonLoading ? (
           <div className="flex w-full h-full justify-center items-center">
             <div className="flex justify-start px-4 py-2">
@@ -76,7 +77,7 @@ function App() {
                 {filteredPokemon ? (
                   <>
                     {" "}
-                    {filteredPokemon?.map((onePokemon: any, index: number) => (
+                    {filteredPokemon?.map((onePokemon: Result, index: number) => (
                       <div key={index} className="w-full md:w-1/2 lg:w-1/4">
                         <PokemonCard pokemonUrl={onePokemon.url} />{" "}
                       </div>
